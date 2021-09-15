@@ -20,18 +20,24 @@ export default class Header extends Component {
 
   fetchUser = async () => {
     this.setState({ user: await getUser(), loading: false });
-  }
+  };
 
   render() {
     const { user: { name }, loading } = this.state;
     if (loading) return <Loading />;
     return (
       <header data-testid="header-component">
-        <p data-testid="header-user-name">{ name }</p>
+        <p data-testid="header-user-name">{name}</p>
         <nav>
-          <Link data-testid="link-to-search" to="/search">Search</Link>
-          <Link data-testid="link-to-favorites" to="/favorites">Favorites</Link>
-          <Link data-testid="link-to-profile" to="/profile">Pprofile</Link>
+          <Link data-testid="link-to-search" to="/search">
+            Search
+          </Link>
+          <Link data-testid="link-to-favorites" to="/favorites">
+            Favorites
+          </Link>
+          <Link data-testid="link-to-profile" to="/profile">
+            Pprofile
+          </Link>
         </nav>
       </header>
     );
