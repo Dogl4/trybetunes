@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 import Header from '../components/Header';
+import fecthAlbums from '../services/searchAlbumsAPI';
+import Loading from '../components/Loading';
+import SearchAlbum from '../components/SearchAlbum';
 
 export default class Search extends Component {
   constructor(props) {
@@ -8,6 +11,9 @@ export default class Search extends Component {
 
     this.state = {
       artist: '',
+      artistSave: null,
+      loading: false,
+      albums: [],
     };
   }
 
@@ -15,8 +21,15 @@ export default class Search extends Component {
     this.setState({ [name]: value });
   }
 
-  render() {
+  handleClick = async () => {
     const { artist } = this.state;
+    this.setState({ artistSave: artist, loading: true });
+    const returnAlbums = await fecthAlbums(artist);
+    this.setState({ loading: false, artist: '', albums: returnAlbums });
+  }
+
+  render() {
+    const { artist, loading, artistSave, albums } = this.state;
     const MIN_LENGTH = 2;
     return (
       <div data-testid="page-search">
@@ -35,8 +48,12 @@ export default class Search extends Component {
             value="Pesquisar"
             data-testid="search-artist-button"
             disabled={ MIN_LENGTH > artist.length }
+            onClick={ this.handleClick }
           />
         </form>
+        {loading && <Loading />}
+        { artistSave !== null
+        && <SearchAlbum albums={ albums } artistSave={ artistSave } /> }
       </div>
     );
   }

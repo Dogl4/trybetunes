@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Loading from '../pages/Loading';
+import Loading from './Loading';
 import { getUser } from '../services/userAPI';
 
 export default class Header extends Component {
@@ -36,7 +36,7 @@ export default class Header extends Component {
             Favorites
           </Link>
           <Link data-testid="link-to-profile" to="/profile">
-            Pprofile
+            Profile
           </Link>
         </nav>
       </header>
