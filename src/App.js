@@ -15,16 +15,17 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={ Login } />
-          <Route path="/search" component={ Search } />
-          <Route path="/album/:id" component={ Album } />
-          <Route path="/favorites" component={ Favorites } />
+          <Route exact path="/search" component={ Search } />
+          <Route exact path="/album/:id" component={ Album } />
+          <Route exact path="/favorites" component={ Favorites } />
           <Route exact path="/profile" component={ Profile } />
-          <Route path="/profile/edit" component={ ProfileEdit } />
+          <Route exact path="/profile/edit" component={ ProfileEdit } />
           <Route component={ NotFound } />
         </Switch>
       </BrowserRouter>
     );
   }
 }
+// <Referencias: https://medium.com/the-andela-way/understanding-the-fundamentals-of-routing-in-react-b29f806b157e>
 
 export default App;
