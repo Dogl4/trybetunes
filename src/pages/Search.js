@@ -8,13 +8,23 @@ import SearchAlbum from '../components/SearchAlbum';
 export default class Search extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       artist: '',
       artistSave: null,
       loading: false,
       albums: [],
     };
+
+    this.getAlbums = this.getAlbums.bind(this);
+  }
+
+  componentDidMount() {
+    this.getAlbums('Led Zeppelin');
+  }
+
+  async getAlbums(artist) {
+    const albumsNew = await fecthAlbums(artist);
+    this.setState({ albums: albumsNew });
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -52,8 +62,7 @@ export default class Search extends Component {
           />
         </form>
         {loading && <Loading />}
-        { artistSave !== null
-        && <SearchAlbum albums={ albums } artistSave={ artistSave } /> }
+        { albums && <SearchAlbum albums={ albums } artistSave={ artistSave } /> }
       </div>
     );
   }
