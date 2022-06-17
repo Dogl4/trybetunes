@@ -1,4 +1,4 @@
-# Projeto Shopping Cart
+# Projeto Trybetunes
 ## 📋 Descrição do projeto
 Uma aplicação capaz de reproduzir músicas das mais variadas bandas e artistas. Consumindo APIs de músicas e bandas do iTunes.
 
